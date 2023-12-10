@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage("unittest") {
             steps {
-                ls .
                 echo "unit testing..."
+                sh("ls .")
                 npm test
             }
         }
