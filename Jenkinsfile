@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage("unittest") {
             steps {
+                sh('whoami')
                 echo "unit testing..."
                 sh("npm test")
             }
