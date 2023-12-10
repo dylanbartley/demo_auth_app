@@ -4,8 +4,7 @@ pipeline {
         stage("unittest") {
             steps {
                 echo "unit testing..."
-                sh("ls .")
-                npm test
+                sh("npm test")
             }
         }
         stage("build") {
