@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage("unittest") {
             steps {
-                sh('whoami')
                 echo "unit testing..."
-                sh("npm test")
+                sh ". ~/.nvm/nvm.sh && nvm use 20"
+                sh "npm test"
             }
         }
         stage("build") {
