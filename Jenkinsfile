@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo "unit testing..."
                 sh ". ~/.nvm/nvm.sh && nvm use 20"
-                sh "npm test"
+                sh ". ~/.nvm/nvm.sh && npm test"
             }
         }
         stage("build") {
