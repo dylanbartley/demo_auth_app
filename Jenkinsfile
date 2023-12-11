@@ -4,9 +4,11 @@ pipeline {
         stage("pre-build") {
             steps {
                 echo "pre building..."
-                sh ". ~/.nvm/nvm.sh"
-                sh "nvm use 20"
-                sh "npm install"
+                sh """
+                    . ~/.nvm/nvm.sh"
+                    nvm use 20
+                    npm install
+                """
             }
         }
         stage("unittest") {
