@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo "pre building..."
                 sh """
-                    . ~/.nvm/nvm.sh"
+                    . ~/.nvm/nvm.sh
                     nvm use 20
                     npm install
                 """
