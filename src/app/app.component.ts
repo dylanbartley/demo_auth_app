@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -12,6 +12,7 @@ import { routes } from './app.routes';
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterLink,
     MatTabsModule
   ],
   templateUrl: './app.component.html',

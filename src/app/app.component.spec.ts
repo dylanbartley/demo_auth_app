@@ -1,11 +1,23 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { routes } from './app.routes';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        NoopAnimationsModule,
+        RouterTestingModule.withRoutes(routes),
+        AppComponent
+      ],
     }).compileComponents();
+    const router = TestBed.inject(Router);
   });
 
   it('should create the app', () => {
