@@ -26,12 +26,12 @@
         </div>
         <div>
             @if (view==LOGIN_VIEW) {
-                <button id="loginBtn" mat-flat-button color="primary">Login</button>
-                <button id="registerBtn" mat-flat-button>Register</button>
+                <button id="loginBtn" type="button" mat-flat-button color="primary">Login</button>
+                <button id="registerBtn" type="button" mat-flat-button (click)="onViewToggle(REGISTER_VIEW)">Register</button>
             }
             @else {
-                <button id="submitBtn" mat-flat-button color="primary">Submit</button>
-                <button mat-flat-button>Cancel</button>
+                <button id="submitBtn" type="button" mat-flat-button color="primary">Submit</button>
+                <button id="cancelBtn" type="button" mat-flat-button (click)="onViewToggle()">Cancel</button>
             }
         </div>
     </form>

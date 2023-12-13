@@ -52,8 +52,21 @@ describe('StandaloneComponent', () => {
     expect(confirmInput).toBeFalsy();
   });
 
+  it('should trigger view change to REGISTER_VIEW', () => {
+    let fnSpy = spyOn(component, 'onViewToggle').and.callThrough();
+
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    let registerBtn: HTMLButtonElement|null = compiled.querySelector('#registerBtn');
+    registerBtn?.click();
+
+    expect(fnSpy).toHaveBeenCalled();
+    expect(component.view).toBe(component.REGISTER_VIEW);
+  });
+
   it('with register view, should not show login and register buttons, but submit button with name and confirm password fields', () => {
-    fixture.componentInstance.view = fixture.componentInstance.REGISTER_VIEW;
+    component.view = component.REGISTER_VIEW;
     
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -74,7 +87,7 @@ describe('StandaloneComponent', () => {
   });
 
   it('with register view, should not autocomplete password', () => {
-    fixture.componentInstance.view = fixture.componentInstance.REGISTER_VIEW;
+    component.view = component.REGISTER_VIEW;
     
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -84,5 +97,19 @@ describe('StandaloneComponent', () => {
 
     let att = passInput?.getAttribute('autocomplete');
     expect(att).toBe('off');
+  });
+
+  it('should trigger view change to LOGIN_VIEW', () => {
+    let fnSpy = spyOn(component, 'onViewToggle').and.callThrough();
+
+    component.view = component.REGISTER_VIEW;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    let cancelBtn: HTMLButtonElement|null = compiled.querySelector('#cancelBtn');
+    cancelBtn?.click();
+
+    expect(fnSpy).toHaveBeenCalled();
+    expect(component.view).toBe(component.LOGIN_VIEW);
   });
 });

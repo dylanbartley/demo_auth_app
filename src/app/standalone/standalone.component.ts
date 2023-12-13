@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-standalone',
   standalone: true,
   imports: [
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   templateUrl: './standalone.component.html'
 })
@@ -18,4 +20,7 @@ export class StandaloneComponent {
 
   view: string = this.LOGIN_VIEW;
   
+  onViewToggle ( view: string = this.LOGIN_VIEW ) {
+    this.view = view;
+  }
 }
