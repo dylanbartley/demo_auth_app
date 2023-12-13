@@ -13,5 +13,9 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './standalone.component.html'
 })
 export class StandaloneComponent {
+  LOGIN_VIEW = 'login';
+  REGISTER_VIEW = 'register';
+
+  view: string = this.LOGIN_VIEW;
   
 }

@@ -1,14 +1,39 @@
 <div>
     <form>
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput type="email" name="email">
-        </mat-form-field>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email">
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput type="password" name="password">
-        </mat-form-field>
+            @if(view==REGISTER_VIEW) {
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput name="name">
+                </mat-form-field>
+            }
+    
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" name="password" [attr.autocomplete]="(view==REGISTER_VIEW ? 'off': 'current-password')">
+            </mat-form-field>
+            @if(view==REGISTER_VIEW) {
+                <mat-form-field>
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput type="password" name="confirmpassword" autocomplete="off">
+                </mat-form-field>
+            }
+        </div>
+        <div>
+            @if (view==LOGIN_VIEW) {
+                <button id="loginBtn" mat-flat-button color="primary">Login</button>
+                <button id="registerBtn" mat-flat-button>Register</button>
+            }
+            @else {
+                <button id="submitBtn" mat-flat-button color="primary">Submit</button>
+                <button mat-flat-button>Cancel</button>
+            }
+        </div>
     </form>
     <hr />
     <div>
