@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Validators } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StandaloneComponent } from './standalone.component';
@@ -26,7 +26,6 @@ describe('StandaloneComponent', () => {
   });
 
   it('should render login form', () => {
-    // const fixture = TestBed.createComponent(StandaloneComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
@@ -97,6 +96,16 @@ describe('StandaloneComponent', () => {
 
     let att = passInput?.getAttribute('autocomplete');
     expect(att).toBe('off');
+  });
+
+  it('with register view, should make name and confirmpassword controls required', () => {
+    component.onViewToggle(component.REGISTER_VIEW);
+
+    let nameRequired = component.form.controls.name.hasValidator(Validators.required);
+    let passRequired = component.form.controls.confirmpassword.hasValidator(Validators.required);
+
+    expect(nameRequired).toBeTrue();
+    expect(passRequired).toBeTrue();
   });
 
   it('should trigger view change to LOGIN_VIEW', () => {
