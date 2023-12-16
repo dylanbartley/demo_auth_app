@@ -35,6 +35,8 @@ export class StandaloneComponent implements OnInit {
   ngOnInit () {
     this.form.controls.password.addValidators(passwordMatchValidator(this.form.controls.confirmpassword));
     this.form.controls.confirmpassword.addValidators(passwordMatchValidator(this.form.controls.password));
+
+    this.form.controls.confirmpassword.disable();
   }
   
   onViewToggle ( view: string = this.LOGIN_VIEW ) {
@@ -42,6 +44,11 @@ export class StandaloneComponent implements OnInit {
 
     this.form.controls.name[view === this.REGISTER_VIEW ? 'addValidators' : 'removeValidators'](Validators.required);
     this.form.controls.confirmpassword[view === this.REGISTER_VIEW ? 'addValidators' : 'removeValidators'](Validators.required);
+
+    this.form.controls.confirmpassword[view === this.REGISTER_VIEW ? 'enable' : 'disable']();
+
+    // reset main password validation
+    this.form.controls.password.updateValueAndValidity();
   }
 
   onComparePass ( compareControl: FormControl ) {
@@ -57,5 +64,12 @@ export class StandaloneComponent implements OnInit {
   onRegister () {
     console.log(this.form.valid);
     console.log(this.form.value);
+  }
+
+  getPasswordError ( control: FormControl ) {
+    if (control.hasError('required'))
+      return 'Password is required'
+    
+    return control.hasError('passwordNotMatch') ? 'Passwords do not match' : '';
   }
 }
