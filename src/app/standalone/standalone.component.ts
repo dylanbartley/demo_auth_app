@@ -1,6 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +13,6 @@ import { AuthService } from '../_services/auth.service';
   selector: 'app-standalone',
   standalone: true,
   imports: [
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -36,16 +33,15 @@ export class StandaloneComponent implements OnInit {
     confirmpassword: new FormControl('')
   });
 
+  private authS = inject(AuthService);
+
   ngOnInit () {
     this.form.controls.password.addValidators(passwordMatchValidator(this.form.controls.confirmpassword));
     this.form.controls.confirmpassword.addValidators(passwordMatchValidator(this.form.controls.password));
 
     this.form.controls.confirmpassword.disable();
   }
-  
-  model: AuthModel = { email: '', password: '' };
 
-  private authS = inject(AuthService);
   onViewToggle ( view: string = this.LOGIN_VIEW ) {
     this.view = view;
 
