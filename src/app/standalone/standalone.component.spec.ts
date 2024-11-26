@@ -3,6 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StandaloneComponent } from './standalone.component';
+import { AuthService } from '../_services/auth.service';
+
+const mockAuthService = {
+
+};
 
 describe('StandaloneComponent', () => {
   let component: StandaloneComponent;
@@ -12,7 +17,11 @@ describe('StandaloneComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        StandaloneComponent]
+        StandaloneComponent
+      ],
+      providers: [
+        { provide: AuthService, useValue: mockAuthService }
+      ]
     })
     .compileComponents();
     

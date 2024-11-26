@@ -3,24 +3,24 @@
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput type="email" name="email">
+                <input matInput type="email" name="email" [(ngModel)]="model.email">
             </mat-form-field>
 
             @if(view==REGISTER_VIEW) {
                 <mat-form-field>
                     <mat-label>Name</mat-label>
-                    <input matInput name="name">
+                    <input matInput name="name" [(ngModel)]="model.name">
                 </mat-form-field>
             }
     
             <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput type="password" name="password" [attr.autocomplete]="(view==REGISTER_VIEW ? 'off': 'current-password')">
+                <input matInput type="password" name="password" [attr.autocomplete]="(view==REGISTER_VIEW ? 'off': 'current-password')" [(ngModel)]="model.password">
             </mat-form-field>
             @if(view==REGISTER_VIEW) {
                 <mat-form-field>
                     <mat-label>Confirm Password</mat-label>
-                    <input matInput type="password" name="confirmpassword" autocomplete="off">
+                    <input matInput type="password" name="confirmpassword" autocomplete="off" [(ngModel)]="model.password2">
                 </mat-form-field>
             }
         </div>
