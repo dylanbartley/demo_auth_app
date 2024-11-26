@@ -1,37 +1,52 @@
 <div>
-    <form>
+    <form novalidate [formGroup]="form">
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput type="email" name="email" [(ngModel)]="model.email">
+                <input matInput type="email" name="email" formControlName="email">
+                @if (form.controls.email.invalid) {
+                    <mat-error>A valid email address is required</mat-error>
+                }
             </mat-form-field>
 
             @if(view==REGISTER_VIEW) {
                 <mat-form-field>
                     <mat-label>Name</mat-label>
-                    <input matInput name="name" [(ngModel)]="model.name">
+                    <input matInput name="name" formControlName="name">
+                    @if (form.controls.name.invalid) {
+                        <mat-error>A name is required</mat-error>
+                    }
                 </mat-form-field>
             }
     
             <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput type="password" name="password" [attr.autocomplete]="(view==REGISTER_VIEW ? 'off': 'current-password')" [(ngModel)]="model.password">
+                <input matInput type="password" name="password" formControlName="password"
+                    (keyup)="onComparePass(form.controls.confirmpassword)"
+                    [attr.autocomplete]="(view==REGISTER_VIEW ? 'off': 'current-password')">
+                @if (form.controls.password.invalid) {
+                    <mat-error>{{getPasswordError(form.controls.password)}}</mat-error>
+                }
             </mat-form-field>
             @if(view==REGISTER_VIEW) {
                 <mat-form-field>
                     <mat-label>Confirm Password</mat-label>
-                    <input matInput type="password" name="confirmpassword" autocomplete="off" [(ngModel)]="model.password2">
+                    <input matInput type="password" name="confirmpassword" formControlName="confirmpassword" autocomplete="off"
+                        (keyup)="onComparePass(form.controls.password)">
+                    @if (form.controls.confirmpassword.invalid) {
+                        <mat-error>{{getPasswordError(form.controls.confirmpassword)}}</mat-error>
+                    }
                 </mat-form-field>
             }
         </div>
         <div>
             @if (view==LOGIN_VIEW) {
-                <button id="loginBtn" mat-flat-button color="primary">Login</button>
-                <button id="registerBtn" mat-flat-button>Register</button>
+                <button id="loginBtn" type="button" mat-flat-button color="primary" (click)="onLogin()">Login</button>
+                <button id="registerBtn" type="button" mat-flat-button (click)="onViewToggle(REGISTER_VIEW)">Register</button>
             }
             @else {
-                <button id="submitBtn" mat-flat-button color="primary">Submit</button>
-                <button mat-flat-button>Cancel</button>
+                <button id="submitBtn" type="button" mat-flat-button color="primary" (click)="onRegister()">Submit</button>
+                <button id="cancelBtn" type="button" mat-flat-button (click)="onViewToggle()">Cancel</button>
             }
         </div>
     </form>
