@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
+import { CognitoService } from '../_services/cognito.service';
 
 @Component({
   selector: 'app-cognito',
@@ -8,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class CognitoComponent {
 
+  private auth = inject(CognitoService);
 }
